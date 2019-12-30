@@ -1,1 +1,5 @@
+# ignore all temporary files
 *~
+
+# ignore anything created by the scripts
+*.png
