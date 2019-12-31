@@ -4,12 +4,13 @@ import matplotlib.pyplot as plt
 import sys 
 
 # Create the CDF
-samples = int(sys.argv[1])
-x_pos = np.linspace(0,10,samples)
-sigma = 2
-mu = 5
+samples = int(sys.argv[3])
+domain_min = int(sys.argv[1])
+domain_max = int(sys.argv[2])
 
-y_array = (1/(sigma*np.sqrt(2*np.pi)))*np.exp((-0.5)*((x_pos-mu)/sigma)**2)
+x_pos = np.linspace(domain_min,domain_max,samples)
+
+y_array = np.exp(-x_pos)
 
 pdf = y_array/float(y_array.sum())
 
@@ -34,6 +35,6 @@ std_dev = x_sample.std()
 ax[2].set_xlabel("Mean = {0:0.2f} Std. Dev = {1:0.2f}".format(mean,std_dev))
 
 
-fig.savefig('../Data/cdf.png')
+fig.savefig('../Data/inversetransform.png')
 
 
