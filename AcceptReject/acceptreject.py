@@ -49,6 +49,8 @@ ax[1].hist(normal_x,bins = 100)
 
 # Normalize the distribution
 # Gotta divide individual areas by the cumulative histogram area
+# TODO: plot histogram of normalized values. 
+#       also why isnt the PDF Normalized
 
 heights = np.zeros(100) # This should be the number of bins in the hi
 bins = np.linspace(0,5,101) 
