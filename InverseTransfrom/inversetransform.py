@@ -12,7 +12,7 @@ x_pos = np.linspace(domain_min,domain_max,samples)
 
 y_array = np.exp(-x_pos)
 
-pdf = y_array/float(y_array.sum())
+pdf = y_array/float(y_array.sum()) # Why divide by the sum? 
 
 cdf = pdf.cumsum()
 
@@ -27,7 +27,7 @@ for r,val in enumerate(x_sample):
 fig, ax = plt.subplots(1,3)
 fig.set_size_inches(11,4)
 
-ax[0].plot(x_pos,pdf)
+ax[0].plot(x_pos,y_array)
 ax[1].plot(x_pos,cdf)
 ax[2].hist(x_sample, bins = 100)
 mean = x_sample.mean()
