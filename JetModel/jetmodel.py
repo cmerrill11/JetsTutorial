@@ -24,7 +24,7 @@ Model has to include two parts:
 """
 # Create a random number generator that gives a zumeber from PDF(z) = 1/z
 
-def z_fraction():
+def z():
     x_pos = np.linspace(1e-3,1,1000)
     y_pos = 1/(x_pos)
     pdf = y_pos/(float(y_pos.sum()))
@@ -36,7 +36,7 @@ def z_fraction():
 
 # Do the same thing for the PDF(theta) = 1/theta
     
-def random_theta():
+def theta():
     theta_pos = np.linspace(1e-3,np.pi/2,1000)
     y_pos = 1/(theta_pos)
     pdf = y_pos/(float(y_pos.sum()))
@@ -48,9 +48,39 @@ def random_theta():
     
 # Now makes the most sense to create an object that has a method for splitting. 
 # but atm imma just code that up in an array and only use 2 dimensions. 
+class particle(): 
+    
+    def __init__(self, gen, energy, px, py):
+        self.gen = gen
+        self.energy = energy
+        self.px = px
+        self.py = py
+        
+    def __str__(self):
+        print(self.energy + " " + self.px + " " + self.pz)
+        
 
-initial_parton = np.array(1,1,1)
+def branch(p1, z, theta):
+    if (p1.energy > 10**-2): 
+    
+        gen1 = p1.gen + 1
+        energy1 = p1.energy * z
+        px1 = p1.px * np.cos(theta)
+        py1 = p1.py * np.sin(theta)    
+        next1 = particle(gen1, energy1, px1, py1)
+        
+        energy2 = p1.energy - energy1
+        px2 = p1.px - px1
+        py2 = p1.py - py1
+        next2 = particle(gen1, energy2, px2, py2)
+        
+        return branch(next1,z(),theta())+branch(next2,z(),theta())
+    
+    else:
+        return p1
+        
 
-time = random.random()
+p1 = particle(0,1,1,1)
 
-x_dist = initial_parton[] 
+array = branch(p1, z(), theta())
+
